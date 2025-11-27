@@ -39,12 +39,14 @@ function App() {
   };
 
   return (
-    <div>
-      <Header />
-      <AddTask onAdd={addTask} />
-      <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
-
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-md mx-auto bg-white shadow-lg rounded-xl p-6">
+        <Header />
+        <AddTask onAdd={addTask} />
+        <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
+      </div>
     </div>
+
   );
 }
 

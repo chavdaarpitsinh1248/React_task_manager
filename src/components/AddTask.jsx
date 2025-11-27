@@ -12,14 +12,22 @@ function AddTask({ onAdd }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text"
-                    placeholder="Enter a task..."
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}   // controlled input
+        <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
+          <input
+            type="text"
+            placeholder="Enter a task..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            className="flex-grow border border-gray-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400"
             />
-            <button type="submit">Add</button>
+            <button
+                type="submit"
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            >
+                Add
+            </button>
         </form>
+
     );
 }
 

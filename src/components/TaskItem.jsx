@@ -1,18 +1,29 @@
 function TaskItem({ task, onToggle, onDelete }) {
     return (
-        <li>
-            <input 
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => onToggle(task.id)}
-            />
+            <li className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg mb-2">
+                <div className="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        checked={task.completed}
+                        onChange={() => onToggle(task.id)}
+                        className="w-4 h-4"
+                    />
+                    <span
+                        className={`${
+                        task.completed ? "line-through text-gray-500" : "text-gray-800"
+                        }`}
+                    >
+                        {task.text}
+                    </span>
+                </div>
 
-            <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>
-                {task.text}
-            </span>
-
-            <button onClick={() => onDelete(task.id)}>Delete</button>
-        </li>
+                <button
+                    onClick={() => onDelete(task.id)}
+                    className="text-red-500 hover:text-red-700"
+                >
+                    Delete
+                </button>
+            </li>
     );
 }
 

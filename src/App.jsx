@@ -5,7 +5,10 @@ import TaskList from "./components/TaskList";
 
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const addTask = (text) => {
     const newTask = {

@@ -16,12 +16,24 @@ function App() {
 
     setTasks([...tasks, newTask]);
   };
+  
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
 
   return (
     <div>
       <Header />
       <AddTask onAdd={addTask} />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
 
     </div>
   );

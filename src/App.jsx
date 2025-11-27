@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import AddTask from "./components/AddTask";
+import TaskList from "./components/TaskList";
+
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -19,9 +21,8 @@ function App() {
     <div>
       <Header />
       <AddTask onAdd={addTask} />
+      <TaskList tasks={tasks} />
 
-      <h3>Your Tasks:</h3>
-      <pre>{JSON.stringify(tasks, null, 2)}</pre>
     </div>
   );
 }

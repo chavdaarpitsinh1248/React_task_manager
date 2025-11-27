@@ -38,12 +38,41 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const [filter, setFilter] = useState("all");  // "all", "completed", "pending"
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "all") return true;
+    if (filter === "completed") return task.completed;
+    if (filter === "pending") return !task.completed;
+    return true;
+  });
+
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-xl p-6">
         <Header />
+        <div className="flasx jusity-center gap-4 mb-4">
+          <button 
+              className={`px-3 py-1 rounded ${filter === "all" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+              onClick={() => setFilter("all")}
+          >
+            All
+          </button>
+          <button 
+              className={`px-3 py-1 rounded ${filter === "all" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+              onClick={() => setFilter("completed")}
+          >
+            Completed
+          </button>
+          <button 
+              className={`px-3 py-1 rounded ${filter === "all" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+              onClick={() => setFilter("pending")}
+          >
+            Pending
+          </button>
+        </div>
         <AddTask onAdd={addTask} />
-        <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
+        <TaskList tasks={filteredTasks} onToggle={toggleTask} onDelete={deleteTask} />
       </div>
     </div>
 

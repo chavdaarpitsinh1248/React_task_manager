@@ -61,6 +61,14 @@ function App() {
     return true;
   });
 
+  const editTask = (id, newText) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: newText } : task
+      )
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 transition-colors duration-300">
       <div className="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 transition-colors duration-300">
@@ -103,7 +111,12 @@ function App() {
         </div>
 
         <AddTask onAdd={addTask} />
-        <TaskList tasks={filteredTasks} onToggle={toggleTask} onDelete={deleteTask} />
+        <TaskList 
+          tasks={filteredTasks} 
+          onToggle={toggleTask} 
+          onDelete={deleteTask} 
+          onEdit={editTask}
+        />
       </div>
     </div>
   );

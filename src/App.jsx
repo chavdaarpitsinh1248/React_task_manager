@@ -69,6 +69,10 @@ function App() {
     );
   };
 
+  const clearCompleted = () => {
+    setTasks(tasks.filter((task) => !task.completed));
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 transition-colors duration-300">
       <div className="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 transition-colors duration-300">
@@ -117,6 +121,20 @@ function App() {
           onDelete={deleteTask} 
           onEdit={editTask}
         />
+        <div className="flex justify-between items-center mt-4 text-gray-700 dark:text-gray-300">
+          <span>
+            {tasks.filter((t) => !t.completed).length} tasks remaining
+          </span>
+
+          {
+            <button
+              onClick={clearCompleted}
+              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+            >
+              Clear Completed
+            </button>
+          }
+        </div>
       </div>
     </div>
   );
